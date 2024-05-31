@@ -1,0 +1,22 @@
+
+<form action="/add" method="POST">
+    <input type="text" name="title" placeholder="Title" required>
+    <input type="text" name="description" placeholder="Description">
+    <button type="submit">Add Task</button>
+</form>
+<ul>
+    <% todos.forEach(todo => { %>
+        <li>
+            <form action="/update/<%= todo.id %>" method="POST">
+                <input type="text" name="title" value="<%= todo.title %>" required>
+                <input type="text" name="description" value="<%= todo.description %>">
+                <input type="checkbox" name="completed" value="true" <%= todo.completed ? 'checked' : ' ' %>>
+                <button type="submit">Update</button>
+            </form>
+
+            <form action="/delete/<%= todo.id %>" method="POST"> <button type="submit">Delete</button>
+            </form>
+
+        </li>
+    <% }) %>
+</ul>
