@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const {syncDB} = require('./models');
 const todoRoutes = require('./routes/todoRoutes');
-
+const apiRoutes = require('./routes/apiRoutes');
 const app = express();
 const PORT = 3000;
 
@@ -16,9 +16,11 @@ app.use(session({
 }));
 app.use(express.static('public'));
 
-app.set('views', __dirname + '/views'); //  đúng đường dẫn tới thư mục views
+app.set('views', __dirname + '/views'); //  đường dẫn tới thư mục views
 //view engine
 app.set('view engine','ejs');
+//api
+app.use('/api', apiRoutes);
 
 //Routes
 app.use('/', todoRoutes);
